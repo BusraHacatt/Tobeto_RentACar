@@ -1,5 +1,6 @@
-﻿namespace Business;
-
-public class GetBrandListRequest
+﻿namespace Business.Request.Brand
 {
+    public class GetBrandListRequest
+    {
+    }
 }

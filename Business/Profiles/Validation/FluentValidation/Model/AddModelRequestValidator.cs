@@ -1,4 +1,5 @@
-﻿using Business.Requests.Model;
+﻿
+using Business.Request.Model;
 using FluentValidation;
 
 namespace Business.Profiles.Validation.FluentValidation.Model;

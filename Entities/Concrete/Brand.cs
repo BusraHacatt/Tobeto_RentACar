@@ -1,17 +1,17 @@
 ﻿using Core.Entities;
 
-namespace Entities.Concrete;
-
-public class Brand : Entity<int>
+namespace Entities.Concrete
 {
-    public string Name { get; set; }
-
-    public Brand()
+    public class Brand : Entity<int>
     {
-    }
+        public string Name { get; set; } = null!;
+        public Brand()
+        {
 
-    public Brand(string name)
-    {
-        Name = name;
+        }
+        public Brand(string name)
+        {
+            Name = name;
+        }
     }
 }

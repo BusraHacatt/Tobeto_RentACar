@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace Core.CrossCuttingConcerns.Exceptions;
-
-public static class ApplicationBuilderGlobalExceptionHandlingExtensions
+namespace Core.CrossCuttingConcerns.Exceptions
 {
-    public static IApplicationBuilder UseGlobalExceptionHandling(this IApplicationBuilder app)
+    public static class ApplicationBuilderGlobalExceptionHanding
     {
-        return app.UseMiddleware<ExceptionMiddleware>();
+        public static IApplicationBuilder UseGlobalExceptionHandling(this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<ExceptionMiddleware>();
+        }
     }
 }

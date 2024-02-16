@@ -1,8 +1,10 @@
-﻿namespace Business;
-
-public class GetModelListRequest
+﻿namespace Business.Request.Model
 {
-    public int? FilterByBrandId { get; set; }
-    public int? FilterByFuelId { get; set; }
-    public int? FilterByTransmissionId { get; set; }
+    public class GetModelListRequest
+    {
+        //filtreleme
+        public int? FilterByBrandId { get; set; }
+        public int? FilterByFuelId { get; set; }
+        public int? FilterByTransmissionId { get; set; }
+    }
 }

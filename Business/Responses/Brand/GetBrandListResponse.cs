@@ -1,18 +1,18 @@
 ﻿using Business.Dtos.Brand;
 
-namespace Business;
-
-public class GetBrandListResponse
+namespace Business.Responses.Brand
 {
-    public ICollection<BrandListItemDto> Items { get; set; }
-
-    public GetBrandListResponse()
+    public class GetBrandListResponse
     {
-        Items = Array.Empty<BrandListItemDto>();
-    }
-
-    public GetBrandListResponse(ICollection<BrandListItemDto> items)
-    {
-        Items = items;
+        public ICollection<BrandListItemDto> Items { get; set; }
+        public GetBrandListResponse()
+        {
+            //newleme yaparken parmaetre vermezsem boş bir array oluştursun,
+            Items = Array.Empty<BrandListItemDto>();
+        }
+        public GetBrandListResponse(ICollection<BrandListItemDto> items)
+        {
+            Items = items;
+        }
     }
 }

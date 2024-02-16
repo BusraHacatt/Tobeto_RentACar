@@ -1,8 +1,17 @@
 ﻿using Core.Entities;
 
-namespace Entities.Concrete;
-
-public class Fuel : Entity<int>
+namespace Entities.Concrete
 {
-    public string Name { get; set; }
+    public class Fuel : Entity<int>
+    {
+        public string Name { get; set; }
+        public Fuel()
+        {
+
+        }
+        public Fuel(string name)
+        {
+            Name = name;
+        }
+    }
 }

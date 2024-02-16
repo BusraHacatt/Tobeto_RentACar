@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace Core.CrossCuttingConcerns.Exceptions;
-
-public class NotFoundProblemDetails : ProblemDetails
+namespace Core.CrossCuttingConcerns.Exceptions
 {
-    public override string ToString()
+    public class NotFoundProblemDetails : ProblemDetails
     {
-        return JsonConvert.SerializeObject(this);
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }
