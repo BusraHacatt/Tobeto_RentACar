@@ -8,9 +8,11 @@ using Entities.Concrete;
 
 namespace Business.Concrete
 {
-    public class BrandManager : IBrandService
+    public class BrandManager :IBrandService
     {
+        //Bir entity service'i kendi entitysi dışında hiçbir entity'nin DAL'ını enjekte etmemelidir.
         private readonly IBrandDal _brandDal;
+
         private readonly BrandBusinessRules _brandBusinessRules;
         private IMapper _mapper;
 
@@ -22,19 +24,14 @@ namespace Business.Concrete
         }
 
         public AddBrandResponse Add(AddBrandRequest request)
-        { //İş kuralları
+        {
             _brandBusinessRules.CheckIfBrandNameExists(request.Name);
+            // Authentication-Authorization
 
-            //validation
-            //yetki kontrolü 
-            //Cache
-            //Transaction vs..
-            // Brand addedBrand=
 
-            Brand brandToAdd = _mapper.Map<Brand>(request);   //mapping    //new(request.name) elle newlemek yerine mappleme özelliğini kullanıyoruz.         //aynı işlemde eşleşen kısımları, Brand nesnesinde oluşturuyor  
+            Brand brandToAdd = _mapper.Map<Brand>(request);   //mapping   
             _brandDal.Add(brandToAdd);
 
-            //Mapping
             AddBrandResponse response = _mapper.Map<AddBrandResponse>(brandToAdd);
             return response;
         }
@@ -49,25 +46,22 @@ namespace Business.Concrete
             DeleteBrandResponse response = _mapper.Map<DeleteBrandResponse>(deletedBrand);
             return response;
 
-            //Brand brandToDelete = _brandBusinessRules.FindBrandId(id);
-            //brandToDelete.DeletedAt = DateTime.Now;
-            //DeleteBrandResponse response = _mapper.Map<DeleteBrandResponse>(brandToDelete);
-            //return response;
+           
 
 
         }
+        public Brand? GetById(int id)
+        {
+            return _brandDal.Get(i => i.Id == id);
+        }
+
+
 
         public GetBrandListResponse GetList(GetBrandListRequest request)
         {
-            //İş kodları
-            //validation
-            //yetki kontrolü 
-            //Cache
-            //Transaction vs..
+           
             IList<Brand> brandList = _brandDal.GetList();
-            //Brand -> BrandListItemDto
-            //IList<BrandListItemDto> -> GetBrandListResponseList<BrandListItemDto>
-            //brandList.Items diye bir alan yok bu yüzden mapping yapılacak
+          
 
             GetBrandListResponse response = _mapper.Map<GetBrandListResponse>(brandList);
             return response;
@@ -78,11 +72,6 @@ namespace Business.Concrete
         public UpdateBrandResponse Update(UpdateBrandRequest request)
         {
 
-            //Brand brandToUpdate = _brandBusinessRules.FindBrandId(id);
-            //brandToUpdate.Name = request.Name;
-            //brandToUpdate.UpdatedAt = DateTime.Now;
-            //UpdateBrandResponse response = _mapper.Map<UpdateBrandResponse>(brandToUpdate);
-            //return response;
             Brand? BrandToUpdate = _brandDal.Get(predicate: brand => brand.Id == request.Id);
             _brandBusinessRules.CheckIfBrandExists(BrandToUpdate);
 
@@ -91,9 +80,6 @@ namespace Business.Concrete
             var response = _mapper.Map<UpdateBrandResponse>(updatedBrand);
             return response;
         }
-        //AddBrandResponse IBrandService.Add(AddBrandRequest request)
-        //{
-        //    throw new NotImplementedException();
-        //}
+
     }
 }
