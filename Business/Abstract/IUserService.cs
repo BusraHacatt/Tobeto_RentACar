@@ -1,4 +1,5 @@
 ﻿using Business.Requests.User;
+using Core.Utilities.Security.JWT;
 
 namespace Business.Abstract
 {
@@ -6,6 +7,7 @@ namespace Business.Abstract
     {
 
         void Register(RegisterRequest request);
-        bool Login(LoginRequest request); //TODO: return type: JWT 
+        AccessToken Login(LoginRequest request); //TODO: return type: JWT 
+
     }
 }

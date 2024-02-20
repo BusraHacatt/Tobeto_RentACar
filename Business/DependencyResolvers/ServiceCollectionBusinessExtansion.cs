@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessRules;
 using Business.Concrete;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
@@ -18,6 +19,8 @@ namespace Business.DependencyResolvers
        
         public static IServiceCollection AddBusinessServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<ITokenHelper, JwtTokenHelper>();
+
             services
                 .AddScoped<IBrandService, BrandManager>()
                 .AddScoped<IBrandDal, EfBrandDal>()
