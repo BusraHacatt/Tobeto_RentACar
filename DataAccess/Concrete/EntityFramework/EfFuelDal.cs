@@ -1,34 +1,14 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework.Contexts;
 using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfFuelDal : IFuelDal
+    public class EfFuelDal : EfEntityRepositoryBase<Fuel, int, RentACarContext>, IFuelDal
     {
-        public Fuel Add(Fuel entity)
+        public EfFuelDal(RentACarContext context) : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public Fuel Delete(Fuel entity, bool isSoftDelete)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Fuel? Get(Func<Fuel, bool> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<Fuel> GetList(Func<Fuel, bool>? predicate = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Fuel Update(Fuel entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }
-

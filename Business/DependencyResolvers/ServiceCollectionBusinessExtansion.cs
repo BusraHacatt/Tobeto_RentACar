@@ -19,22 +19,22 @@ namespace Business.DependencyResolvers
         public static IServiceCollection AddBusinessServices(this IServiceCollection services, IConfiguration configuration)
         {
             services
-                .AddSingleton<IBrandService, BrandManager>()
-                .AddSingleton<IBrandDal, InMemoryBrandDal>()
-                .AddSingleton<BrandBusinessRules>();
-            services.AddSingleton<IFuelService, FuelManager>().AddSingleton<IFuelDal, InMemoryFuelDal>().AddSingleton<FuelBusinessRules>();
+                .AddScoped<IBrandService, BrandManager>()
+                .AddScoped<IBrandDal, EfBrandDal>()
+                .AddScoped<BrandBusinessRules>();
+            services.AddSingleton<IFuelService, FuelManager>().AddSingleton<IFuelDal, EfFuelDal>().AddSingleton<FuelBusinessRules>();
             services
-                .AddSingleton<ITransmissionService, TransmissionManager>()
-                .AddSingleton<ITransmissionDal, InMemoryTransmissionDal>()
-                .AddSingleton<TransmissionBusinessRules>();
+                .AddScoped<ITransmissionService, TransmissionManager>()
+                .AddScoped<ITransmissionDal, EfTransmissionDal>()
+                .AddScoped<TransmissionBusinessRules>();
 
             services.AddScoped<IModelService, ModelManager>();
             services.AddScoped<IModelDal, EfModelDal>();
             services.AddScoped<ModelBusinessRules>();
 
-            services.AddSingleton<ICarService, CarManager>();
-            services.AddSingleton<ICarDal, InMemoryCarDal>();
-            services.AddSingleton<CarBusinessRules>();
+            services.AddScoped<ICarService, CarManager>();
+            services.AddScoped<ICarDal, EfCarDal>();
+            services.AddScoped<CarBusinessRules>();
 
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IUserDal, EfUserDal>();
@@ -64,5 +64,3 @@ namespace Business.DependencyResolvers
 
     }
 }
-//j
-//j
