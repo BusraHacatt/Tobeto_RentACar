@@ -3,6 +3,8 @@ using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
 
+
+
 namespace DataAccess.Concrete.EntityFramework.Contexts
 {
     public class RentACarContext : DbContext

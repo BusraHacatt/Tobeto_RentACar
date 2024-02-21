@@ -10,10 +10,7 @@ namespace Entities.Concrete
             TaxNo = taxNo;
             CustomerId = customerId;
         }
-        public CorporateCustomer()
-        {
 
-        }
         public int CustomerId { get; set; }
         public string CompanyName { get; set; }
         public string TaxNo { get; set; }

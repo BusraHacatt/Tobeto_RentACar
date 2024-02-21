@@ -16,7 +16,7 @@ namespace Business.DependencyResolvers
 {
     public static class ServiceCollectionBusinessExtansion
     {
-       
+
         public static IServiceCollection AddBusinessServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ITokenHelper, JwtTokenHelper>();
@@ -40,7 +40,7 @@ namespace Business.DependencyResolvers
             services.AddScoped<CarBusinessRules>();
 
             services.AddScoped<IUserService, UserManager>();
-            services.AddScoped<IUserDal, EfUserDal>();
+          services.AddScoped<IUserDal, EfUserDal>();
             services.AddScoped<UserBusinessRules>();
 
             services.AddScoped<ICustomerService, CustomerManager>();
@@ -58,7 +58,7 @@ namespace Business.DependencyResolvers
 
 
 
-            services.AddAutoMapper(Assembly.GetExecutingAssembly()); 
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddDbContext<RentACarContext>(options => options.UseSqlServer(configuration.GetConnectionString("RentACarMSSQL22")));
 
             return services;
