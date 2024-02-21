@@ -5,26 +5,34 @@ using Business.Request.Brand;
 using Business.Responses.Brand;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
-    public class BrandManager :IBrandService
+    public class BrandManager : IBrandService
     {
         //Bir entity service'i kendi entitysi dışında hiçbir entity'nin DAL'ını enjekte etmemelidir.
         private readonly IBrandDal _brandDal;
 
         private readonly BrandBusinessRules _brandBusinessRules;
         private IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public BrandManager(IBrandDal brandDal, BrandBusinessRules brandBusinessRules, IMapper mapper)
+        public BrandManager(IBrandDal brandDal, BrandBusinessRules brandBusinessRules, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _brandDal = brandDal;//new InMemoryDal(); // başka katmanların classları newlenmez. bu yüzden dependency injection 
             _brandBusinessRules = brandBusinessRules;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public AddBrandResponse Add(AddBrandRequest request)
         {
+            if (!_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                throw new Exception("Bu endpointi çalıştırmak için giriş yapmak zorundasınız!");
+            }
+
             _brandBusinessRules.CheckIfBrandNameExists(request.Name);
             // Authentication-Authorization
 
@@ -46,7 +54,7 @@ namespace Business.Concrete
             DeleteBrandResponse response = _mapper.Map<DeleteBrandResponse>(deletedBrand);
             return response;
 
-           
+
 
 
         }
@@ -59,9 +67,9 @@ namespace Business.Concrete
 
         public GetBrandListResponse GetList(GetBrandListRequest request)
         {
-           
+
             IList<Brand> brandList = _brandDal.GetList();
-          
+
 
             GetBrandListResponse response = _mapper.Map<GetBrandListResponse>(brandList);
             return response;

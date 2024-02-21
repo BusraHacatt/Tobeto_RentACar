@@ -14,7 +14,7 @@ namespace WebAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+
 public class BrandsController : ControllerBase
 {
     private readonly IBrandService _brandService; // Field
@@ -41,9 +41,12 @@ public class BrandsController : ControllerBase
     }
 
     //[HttpPost("/add")] // POST http://localhost:5245/api/brands/add
-    [HttpPost] // POST http://localhost:5245/api/brands
+    
+    [HttpPost]// POST http://localhost:5245/api/brands
+    //[Authorize] // Controller içerisinde kullanılır.
     public ActionResult<AddBrandResponse> Add(AddBrandRequest request)
     {
+        // Log kodları
         try
         {
             AddBrandResponse response = _brandService.Add(request);
