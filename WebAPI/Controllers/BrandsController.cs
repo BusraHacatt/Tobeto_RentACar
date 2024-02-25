@@ -68,4 +68,23 @@ public class BrandsController : ControllerBase
             // 400 Bad Request
         }
     }
+
+    [HttpPost("add")]
+    [Authorize(Roles = "BrandAdmin")]
+
+    public IActionResult AddBrand()
+    {
+        
+        return Ok(new { message = "Marka başarıyla eklendi" });
+    }
+
+    [HttpGet("get")]
+    [Authorize(Roles = "BrandUser")]
+
+    public IActionResult GetBrands()
+    {
+
+
+        return Ok(new { message = "Markalar başarıyla alındı" });
+    }
 }

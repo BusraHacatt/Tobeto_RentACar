@@ -8,6 +8,7 @@ namespace Core.Entities
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public bool Approved { get; set; }
+        public bool Status { get; set; }
 
         // abc123  => Plain Text
         // Hashing SHA512, MD5 => VKQWLELXQWOE03129FKLSLQW

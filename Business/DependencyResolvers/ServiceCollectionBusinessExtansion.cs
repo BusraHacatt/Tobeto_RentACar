@@ -25,7 +25,10 @@ namespace Business.DependencyResolvers
                 .AddScoped<IBrandService, BrandManager>()
                 .AddScoped<IBrandDal, EfBrandDal>()
                 .AddScoped<BrandBusinessRules>();
-            services.AddSingleton<IFuelService, FuelManager>().AddSingleton<IFuelDal, EfFuelDal>().AddSingleton<FuelBusinessRules>();
+            services
+               .AddScoped<IFuelService, FuelManager>()
+               .AddScoped<IFuelDal, EfFuelDal>()
+               .AddScoped<FuelBusinessRules>();
             services
                 .AddScoped<ITransmissionService, TransmissionManager>()
                 .AddScoped<ITransmissionDal, EfTransmissionDal>()
@@ -39,9 +42,8 @@ namespace Business.DependencyResolvers
             services.AddScoped<ICarDal, EfCarDal>();
             services.AddScoped<CarBusinessRules>();
 
-            services.AddScoped<IUserService, UserManager>();
-          services.AddScoped<IUserDal, EfUserDal>();
-            services.AddScoped<UserBusinessRules>();
+         
+          
 
             services.AddScoped<ICustomerService, CustomerManager>();
             services.AddScoped<ICustomerDal, EfCustomerDal>();
@@ -55,7 +57,9 @@ namespace Business.DependencyResolvers
             services.AddScoped<ICorporateCustomerDal, EfCorporateCustomerDal>();
             services.AddScoped<CorporateCustomerBusinessRules>();
 
-
+            services
+           .AddScoped<IUserService, UserManager>()
+           .AddScoped<IUserDal, EfUserDal>();
 
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

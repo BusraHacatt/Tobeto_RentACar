@@ -7,7 +7,7 @@ using System.Text;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 
-//builder.Services.AddBusinessServices(builder.Configuration);
+builder.Services.AddBusinessServices(builder.Configuration);
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();

@@ -2,9 +2,6 @@
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
-
-
-
 namespace DataAccess.Concrete.EntityFramework.Contexts
 {
     public class RentACarContext : DbContext
@@ -30,7 +27,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
                 e.HasKey(i => i.Id);
                 e.Property(i => i.Premium).HasDefaultValue(true);
             });
-            base.OnModelCreating(modelBuilder); // Normalde yaptığı işlemleri sürdürür.
+            base.OnModelCreating(modelBuilder); // Normalde yaptığı işlemleri sürdürür. 
         }
 
 
